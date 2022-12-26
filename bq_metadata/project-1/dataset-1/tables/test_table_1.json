@@ -1,0 +1,56 @@
+{
+    "projectId": "project-1",
+    "datasetId": "dataset_1",
+    "tableId": "test_table_1",
+    "schema": {
+        "fields": [
+            {
+                "description": "Test description",
+                "fields": [
+                    {
+                        "description": "Test nested",
+                        "mode": "NULLABLE",
+                        "name": "test_nested",
+                        "type": "STRING"
+                    },
+                    {
+                        "description": "Test nested2",
+                        "fields": [
+                            {
+                                "description": "Test nested3",
+                                "mode": "NULLABLE",
+                                "name": "test_nested_3",
+                                "type": "FLOAT"
+                            }
+                        ],
+                        "mode": "REPEATED",
+                        "name": "test_nested_2",
+                        "type": "RECORD"
+                    }
+                ],
+                "mode": "NULLABLE",
+                "name": "full_name",
+                "type": "RECORD"
+            },
+            {
+                "mode": "REQUIRED",
+                "name": "age",
+                "type": "INTEGER"
+            },
+            {
+                "mode": "NULLABLE",
+                "name": "date_column",
+                "type": "TIMESTAMP"
+            }
+        ]
+    },
+    "labels": {
+        "color": "green",
+        "type": "test_label"
+    },
+    "timePartitioning": {
+        "field": "date_column",
+        "type": "DAY",
+        "expirationDays": 30000
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "location": "EU",
+    "projectId": "project-1",
+    "datasetId": "dataset_2",
+    "properties": {
+        "description": "Test-dataset-2",
+        "default_table_expiration_ms": 86400000,
+        "labels": {
+            "type": "test"
+        }
+    }
+}
