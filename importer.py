@@ -102,14 +102,14 @@ class Importer:
                 is_dataset_folder_exists = os.path.exists(f'./bq_metadata/{self.project}/{dataset.dataset_id}')
                 if not is_dataset_folder_exists:
                     os.mkdir(f'./bq_metadata/{self.project}/{dataset.dataset_id}')
-                    #os.mkdir(f'./bq_metadata/{self.project}/{dataset.dataset_id}/views')
-                    #os.mkdir(f'./bq_metadata/{self.project}/{dataset.dataset_id}/tables')
+                    os.mkdir(f'./bq_metadata/{self.project}/{dataset.dataset_id}/views')
+                    os.mkdir(f'./bq_metadata/{self.project}/{dataset.dataset_id}/tables')
 
                 # Create json file
                 self.write_dataset_json(dataset=self.client.get_dataset(dataset.dataset_id))
 
                 logging.info("{}".format(dataset.dataset_id))
-"""
+
                 # Get tables, and views in the given dataset
                 tables = self.client.list_tables(dataset)
                 for table in tables:
@@ -119,9 +119,9 @@ class Importer:
                         self.write_view_sql(dataset.dataset_id, self.client.get_table(table))
                     if table.table_type == "TABLE":
                         self.write_table_json(table=self.client.get_table(table))
-"""
-        #else:
-         #   logging.info("{} project does not contain any datasets.".format(self.project))
+
+        else:
+            logging.info("{} project does not contain any datasets.".format(self.project))
 
 
 if __name__ == "__main__":
