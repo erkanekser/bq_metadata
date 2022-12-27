@@ -1,0 +1,19 @@
+stages:
+  - apply
+
+apply:
+  stage: apply
+  image: <Use bq_metadata image to run pipeline>
+  script:
+    - cat "$SERVICE_ACCOUNT" > /app/credentials.json
+    - gcloud auth activate-service-account --key-file=/app/credentials.json
+    - project_id=($(jq -r '.project_id' /app/credentials.json))
+    - gcloud config set project "${project_id[@]}"
+    - bash ./scripts/entry.sh
+  only:
+    variables:
+      - $RUN_PIPELINE=="True"
+    refs:
+      - master
+    changes:
+      - bq_metadata/**/*
